@@ -14,12 +14,14 @@ class MockIPAVM: XCTestCase {
     var cancellable: AnyCancellable?
     
     override func setUp() {
+        super.setUp()
         viewModel = IPAViewModel(service: MockNetworkService())
     }
     
     override func tearDown() {
         viewModel = nil
         cancellable = nil
+        super.tearDown()
     }
     
     func testFindMyIp() {
