@@ -19,7 +19,7 @@ public struct FindMyIp: View {
     }
     
     @ViewBuilder
-    func conditionalListView() -> some View {
+    public func conditionalListView() -> some View {
         if ipaViewModel.isLoading {
             // Loading state
             ProgressView("Loading...")

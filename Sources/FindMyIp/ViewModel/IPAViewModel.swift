@@ -20,7 +20,7 @@ public class IPAViewModel<T>: ObservableObject where T: NetworkServiceProvider {
         self.service = service
     }
     
-    func getIPADetails() {
+    public func getIPADetails() {
         isLoading = true
        cancellable = service.execute(with: AbstractIPAModel()).sink { [weak self] dataResponse in
             guard let self else {return}
