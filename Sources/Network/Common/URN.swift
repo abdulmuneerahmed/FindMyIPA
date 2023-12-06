@@ -19,7 +19,7 @@ public protocol URN {
     func getURLRequest() -> URLRequest?
 }
 
-extension URN {
+public extension URN {
     var baseURLType: BaseURLType {
         return .ipaddress
     }

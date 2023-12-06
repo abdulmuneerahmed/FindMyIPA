@@ -9,11 +9,11 @@ import Alamofire
 import Combine
 import Foundation
 
-struct NetworkService: NetworkServiceProvider {
+public struct NetworkService: NetworkServiceProvider {
     
-    typealias URNType = URN
+    public typealias URNType = URN
     
-    func execute<URNType>(with urnType: URNType) -> AnyPublisher<DataResponse<URNType.Derived, NetworkError>, Never> where URNType: URN {
+    public func execute<URNType>(with urnType: URNType) -> AnyPublisher<DataResponse<URNType.Derived, NetworkError>, Never> where URNType: URN {
         return AF.request(urnType.baseURLType.value, method: urnType.method)
             .validate()
             .publishDecodable(type: URNType.Derived.self)

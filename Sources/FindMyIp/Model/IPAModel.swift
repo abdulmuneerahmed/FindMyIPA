@@ -33,6 +33,6 @@ public struct IPAModel: Codable {
     }
 }
 
-struct AbstractIPAModel: URN {
-    typealias Derived = IPAModel
+public struct AbstractIPAModel: URN {
+    public typealias Derived = IPAModel
 }
