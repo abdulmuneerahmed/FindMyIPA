@@ -9,6 +9,9 @@ import SwiftUI
 
 public struct FindMyIp: View {
     @ObservedObject var ipaViewModel = IPAViewModel()
+    
+    public init() {}
+    
     public var body: some View {
         VStack {
             conditionalListView()
