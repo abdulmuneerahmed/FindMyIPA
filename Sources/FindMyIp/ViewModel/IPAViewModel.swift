@@ -33,7 +33,7 @@ public class IPAViewModel<T>: ObservableObject where T: NetworkServiceProvider {
         }
     }
     
-    private func errorHandler(error: NetworkError) {
+    public func errorHandler(error: NetworkError) {
         if let backendError = error.backendError {
             errorDescription = backendError.message
         } else {
