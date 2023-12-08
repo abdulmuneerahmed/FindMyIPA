@@ -8,16 +8,12 @@
 @testable import FindMyIp
 import Foundation
 
+protocol MockURN: URN {
+    func mockData() -> Derived?
+    func getMockEncodedData() -> Data?
+}
+
 extension URN {
-    
-    func mockData() -> Derived? {
-        return nil
-    }
-    
-    func getMockEncodedData() -> Data? {
-        return nil
-    }
-    
     func getMockURLRequest() -> URLRequest? {
         return getURLRequest()
     }

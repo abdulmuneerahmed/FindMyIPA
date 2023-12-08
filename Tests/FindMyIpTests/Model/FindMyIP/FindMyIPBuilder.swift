@@ -45,10 +45,22 @@ struct IPAModelBuilder {
     }
 }
 
-struct AbstractMockIPAModel: URN {
+struct AbstractMockIPAModel: MockURN {
     typealias Derived = IPAModel
     
+    var mockDataModel: IPAModel?
+    
     func getMockEncodedData() -> Data? {
-        try? JSONEncoder().encode(IPAModelBuilder.hyderabdIPA())
+        try? JSONEncoder().encode(mockDataModel)
+    }
+    
+    func mockData() -> Derived? {
+        return mockDataModel
+    }
+}
+
+extension AbstractMockIPAModel {
+    init(with data: IPAModel) {
+        mockDataModel = data
     }
 }

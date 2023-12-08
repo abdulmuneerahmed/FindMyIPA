@@ -24,14 +24,43 @@ class MockIPAVM: XCTestCase {
         super.tearDown()
     }
     
-    func testFindMyIp() {
+    func testFindMyIpSuccessService() {
+        var ipaDetails: IPAModel?
+        var failureError: NetworkError?
+        
+        let expectation = XCTestExpectation(description: "Fetch IP details")
+        cancellable = viewModel?.service.execute(with: AbstractMockIPAModel(with: IPAModelBuilder.hyderabdIPA())).sink { response in
+            switch response.result {
+            case .success(let data):
+                ipaDetails = data
+            case .failure(let error):
+                failureError = error
+            }
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1)
+        
+        XCTAssertNotNil(ipaDetails)
+        XCTAssertNil(failureError)
+    }
+    
+    func testFindMyIpEmptyService() {
+        var ipaDetails: IPAModel?
+        var failureError: NetworkError?
+        
+        let expectation = XCTestExpectation(description: "Failure fetching IP details")
         cancellable = viewModel?.service.execute(with: AbstractMockIPAModel()).sink { response in
             switch response.result {
             case .success(let data):
-                XCTAssertNotNil(data)
+                ipaDetails = data
             case .failure(let error):
-                XCTAssertNotNil(error)
+                failureError = error
             }
+            expectation.fulfill()
         }
+        wait(for: [expectation], timeout: 1)
+        
+        XCTAssertNotNil(failureError)
+        XCTAssertNil(ipaDetails)
     }
 }
