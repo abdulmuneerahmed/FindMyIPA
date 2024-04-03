@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "FindMyIp",
     platforms: [
-        .iOS(.v14)
+        .iOS(.v13)
     ],
     products: [
         // Products define the executables and libraries a package produces, making them visible to other packages.
@@ -30,5 +30,6 @@ let package = Package(
         .testTarget(
             name: "FindMyIpTests",
             dependencies: ["FindMyIp"]),
-    ]
+    ],
+    swiftLanguageVersions: [.v5]
 )
